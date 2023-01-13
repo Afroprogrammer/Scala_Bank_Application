@@ -24,7 +24,7 @@ class CoreChecking(bal: Int, rate: Double) extends Checkings {
   override val name: String = "Core Checking"
 }
 
-class StudentChecking(bal: Int, rate: Double) extends Checkings {
+class StudentCheckings(bal: Int, rate: Double) extends Checkings {
   println("Created Core Checking Product")
   override val interestRatePerYear: Double = rate
   override val minimumBalancePerMonth: Int = bal
@@ -32,7 +32,7 @@ class StudentChecking(bal: Int, rate: Double) extends Checkings {
 }
 
 /*----------------------Savings Products-----------------------*/
-class RewardSavings (bal: Int, rate: Double, trans: Int) extends Savings {
+class RewardsSavings (bal: Int, rate: Double, trans: Int) extends Savings {
   override val transactionsAllowedPerMonth: Int = trans
   override val interestRatePerYear: Double = rate
   override val minimumBalancePerMonth: Int = bal
