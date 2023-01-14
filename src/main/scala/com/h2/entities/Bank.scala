@@ -82,4 +82,9 @@ class Bank (val name: String, val city: String , val country: String,val email: 
     lendingAccounts(accountId) withdraw dollars
   }
 
+  def payCreditCardBill(accountId: UUID, dollars: Dollars): Unit = {
+    require(lendingAccounts.get(accountId).nonEmpty, "A valid lending account Id must be provided")
+    lendingAccounts(accountId) payBill dollars
+  }
+
 }
