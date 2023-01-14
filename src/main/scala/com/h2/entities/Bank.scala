@@ -59,4 +59,9 @@ def openLendingAccount(customerId: UUID, productId: UUID, balance:Dollars = Doll
  lendingAccounts += (account.id -> account)
   account.id
 }
+  //deposit mone
+  def deposit(accountId: UUID, amount: Dollars) : Unit ={
+    require(depositAccounts.contains(accountId),"A valid deposits account Id must be provided")
+    depositAccounts(accountId) deposit amount
+  }
 }
