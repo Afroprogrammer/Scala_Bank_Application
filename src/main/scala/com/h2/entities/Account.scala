@@ -13,7 +13,7 @@ class DepositsAccount(val customer: Customer,
   def deposit(amount: Int): Unit = {
     require(amount > 0, "amount deposited should be greater than zero. ")
     println(s"Depositing $amount to $customer account")
-    balance = balance += amount
+    balance += amount
   }
 
   def withdraw(amount: Int): Unit = {

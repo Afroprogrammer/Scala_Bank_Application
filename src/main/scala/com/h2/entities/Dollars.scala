@@ -1,7 +1,7 @@
 package main.scala.com.h2.entities
 
 object Dollars {
-
+   def  apply (a:Int) : Dollars = new Dollars(a)
 }
 
 class Dollars (val amount: Int) extends AnyVal{
