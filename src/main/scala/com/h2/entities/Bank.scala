@@ -64,4 +64,16 @@ def openLendingAccount(customerId: UUID, productId: UUID, balance:Dollars = Doll
     require(depositAccounts.contains(accountId),"A valid deposits account Id must be provided")
     depositAccounts(accountId) deposit amount
   }
+
+
+
+
+
+
+
+
+  def withdraw(accountId:UUID, dollars: Dollars) : Unit ={
+    require(depositAccounts.contains(accountId), "A valid deposits account Id must be provided")
+    depositAccounts(accountId) withdraw dollars
+  }
 }
