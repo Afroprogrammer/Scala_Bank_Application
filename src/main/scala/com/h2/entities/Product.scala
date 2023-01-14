@@ -1,7 +1,11 @@
 package main.scala.com.h2.entities
 
+import java.util.UUID
+
 abstract class Product {
   val name:String
+  val id: UUID = UUID.randomUUID()
+
   override def toString: String = "product" + name
 }
 /*********** Deposit Products ********************/
@@ -22,7 +26,7 @@ class CoreChecking(val minimumBalancePerMonth: Dollars, val interestRatePerYear:
   override val name: String = "Core Checking"
 }
 
-class StudentCheckings(val minimumBalancePerMonth: Dollars,  override val interestRatePerYear: Double) extends Checkings {
+class StudentCheckings(val minimumBalancePerMonth: Dollars,   val interestRatePerYear: Double) extends Checkings {
   println("Created Core Checking Product")
   override val name: String = "Student Checking"
 }
