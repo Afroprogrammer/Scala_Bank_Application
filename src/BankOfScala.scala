@@ -1,6 +1,7 @@
 import main.scala.com.h2.entities._
 
 import java.time.LocalDate
+import java.util.UUID
 import scala.util.Random
 
 object BankOfScala {
@@ -8,8 +9,8 @@ object BankOfScala {
     println("Opening Bank")
    val  bank = new Bank(name = "Bank of Ajax", "Toronto", "Canada",email = Email("Kojo", "gmail.com"))
    val customerIds = getCustomers map(c => bank.createNewCustomer(c._1, c._2, c._3, c._4))
-   val depositProductIds = getDepositProducts map (p => bank.addNewDepositProduct(p._1, p._2, p._3))
-   val lendingProductIds = getLendingProducts map (l => bank.addNewLendingProduct(l._2, l._3, l._4))
+   val depositProductIds = getDepositProducts map {p => bank.addNewDepositProduct(p._1, p._2, p._3)}
+   val lendingProductIds = getLendingProducts map {l => bank.addNewLendingProduct(l._2, l._3, l._4)}
 
     /* logging */
     println(s"Bank: $bank")
@@ -17,18 +18,21 @@ object BankOfScala {
     println(s"Deposits Products Ids: $depositProductIds")
     println(s"LendingProductIds: $lendingProductIds")
 
+
+    def openAccounts(customerId: UUID, productId: UUID, productType: String) = productType match {
+       case "Deposits" => bank.openDepositAccount(customerId, productId, _: Dollars)
+       case "Lending" => bank.openLendingAccount(customerId, productId, _: Dollars)
+     }
+
     /*
-      Bank clerk opening the account.
-      There is no money deposited in the account yet, so the accounts are not active
-      */
-    val depositAccounts = for {
-      c <- customerIds
-      p <- depositProductIds
-    } yield bank.openDepositAccount(c, p, _: Dollars)
+  Bank clerk opening the account.
+  There is no money deposited in the account yet, so the accounts are not active
+  */
+    val depositAccounts = for (c <- customerIds; p <- depositProductIds) yield openAccounts (c, p, "Deposits")
 
     /*Depositing money into Accounts */
     val random = new Random()
-    val depositAccountIds = depositAccounts.map(account => account(Dollars(10000 + random.nextInt(10000))))
+    val depositAccountIds = depositAccounts.map{account => account(Dollars(10000 + random.nextInt(10000)))}
     /* logging */
     println(s"Deposits Accounts: $depositAccounts")
     println(s"Deposits Account Ids: $depositAccountIds")
@@ -37,10 +41,7 @@ object BankOfScala {
      Open credit card accounts.
      The bank process has not finished the credit check, so, balance will be known later
     */
-    val lendingAccounts = for {
-      c <- customerIds
-      p <- lendingProductIds
-    } yield bank.openLendingAccount(c, p, _: Dollars)
+    val lendingAccounts = for (c <- customerIds; p <- lendingProductIds) yield openAccounts(c, p, "Lending")
     val lendingAccountIds = lendingAccounts.map(account => account(Dollars(random.nextInt(500))))
     /* logging */
     println(s"Lending Accounts: $lendingAccounts")
