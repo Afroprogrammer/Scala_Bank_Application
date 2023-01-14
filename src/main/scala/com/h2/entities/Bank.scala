@@ -83,8 +83,14 @@ class Bank (val name: String, val city: String , val country: String,val email: 
   }
 
   def payCreditCardBill(accountId: UUID, dollars: Dollars): Unit = {
-    require(lendingAccounts.get(accountId).nonEmpty, "A valid lending account Id must be provided")
+    require(lendingAccounts.contains(accountId), "A valid lending account Id must be provided")
     lendingAccounts(accountId) payBill dollars
   }
 
+  override def toString: String = s"[$name]" +
+    s" - ${customers.size} customers" +
+    s" - ${depositProducts.size} deposits products" +
+    s" - ${depositAccounts.size} deposits accounts" +
+    s" - ${lendingProducts.size} lending products" +
+    s" - ${lendingAccounts.size} lending accounts"
 }
