@@ -1,5 +1,7 @@
 package main.scala.com.h2.entities
 
+import main.scala.com.h2.{Deposits, Lending, Product}
+
 import java.util.UUID
 
 
@@ -27,7 +29,7 @@ class DepositsAccount(val customer: Customer,
     println(s"Withdrawn $dollars from ${this.toString}")
   }
 
-  override def getBalance: Dollars = balance;
+  override def getBalance: Dollars = balance
 
   override def toString = s"$customer with $product has remaining balance of $balance"
 

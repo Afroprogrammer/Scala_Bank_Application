@@ -1,4 +1,4 @@
-import main.scala.com.h2.entities._
+import main.scala.com.h2.entities.{Bank, Dollars, Email}
 
 import java.time.LocalDate
 import java.util.UUID

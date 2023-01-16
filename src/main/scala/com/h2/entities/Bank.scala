@@ -1,6 +1,6 @@
 package main.scala.com.h2.entities
 
-import jdk.jfr.DataAmount
+import main.scala.com.h2._
 
 import java.time.LocalDate
 import java.util.UUID

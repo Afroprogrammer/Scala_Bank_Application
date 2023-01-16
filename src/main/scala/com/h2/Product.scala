@@ -1,4 +1,6 @@
-package main.scala.com.h2.entities
+package main.scala.com.h2
+
+import main.scala.com.h2.entities.Dollars
 
 import java.util.UUID
 
