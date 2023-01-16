@@ -1,7 +1,6 @@
 package main.scala.com.h2.services
 
-import main.scala.com.h2.{CoreChecking, CreditCard, RewardsSavings, StudentCheckings}
-import main.scala.com.h2.entities.Dollars
+import main.scala.com.h2.entities.{CoreChecking, CreditCard, Dollars, RewardsSavings, StudentCheckings}
 
 import java.util.UUID
 

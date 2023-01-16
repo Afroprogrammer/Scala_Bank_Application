@@ -1,7 +1,6 @@
 package main.scala.com.h2.services
 
-import main.scala.com.h2.{Deposits, Lending}
-import main.scala.com.h2.entities.{Customer, DepositsAccount, LendingAccount}
+import main.scala.com.h2.entities.{Customer, Deposits, DepositsAccount, Lending, LendingAccount}
 
 import java.util.UUID
 

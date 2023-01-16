@@ -1,16 +1,18 @@
 package main.scala.com.h2.entities
 
 import main.scala.com.h2._
-import main.scala.com.h2.services.{AccountService, CustomerService, ProductService}
+import main.scala.com.h2.services.{AccountService, CustomerService, ProductService, StatisticsService}
 
 import java.time.LocalDate
 import java.util.UUID
 
-class Bank (val name: String, val city: String , val country: String,val email: Email) extends
-CustomerService with ProductService with AccountService{
+class Bank(val name: String, val city: String, val country: String, val email: Email)
+  extends CustomerService
+    with ProductService
+    with AccountService
+    with StatisticsService {
 
   println(s"$name Established 2018.")
-
 
   override def toString: String = s"[$name]" +
     s" - $numCustomers customers" +
