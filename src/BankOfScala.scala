@@ -66,31 +66,27 @@ object BankOfScala {
       bank useCreditCard(accountId, Dollars(10000 + random.nextInt(500)))
       bank payCreditCardBill(accountId, Dollars(1000 + random.nextInt(100)))
     }
+
     /* Request Currency */
     println("-" * 100)
     println("Requesting Currency")
     bank.requestCurrency(depositAccountIds.head, "120 USD")
     bank.requestCurrency(depositAccountIds.tail.head, "100 CAD")
 
-    /** Statistics * */
+    /** Statistics **/
     println("-" * 100)
     println("Statistics")
     println("-" * 100)
 
-    val dAccounts = depositAccountIds flatMap {
-      bank.getDepositAccount
-    }
+    val dAccounts = depositAccountIds flatMap {bank.getDepositAccount}
     println(s"Total Money Deposited to Bank: ${bank.getTotalMoneyDeposited(dAccounts)}")
 
-    val lAccounts = lendingAccountIds flatMap {
-      bank.getLendingAccount
-    }
+    val lAccounts = lendingAccountIds flatMap {bank.getLendingAccount}
     println(s"Total Money Borrowed by Customers: ${bank.getTotalMoneyBorrowedByCustomers(lAccounts)}")
 
     val allAccounts = dAccounts ++ lAccounts
     println(s"Number of Transactions By Account: ${bank.getNumTransactionsByAccount(allAccounts)}")
   }
-
 
   /* ------------------- Data ------------------- */
   def getCustomers: Seq[(String, String, String, String)] = {
@@ -120,4 +116,3 @@ object BankOfScala {
     Seq(("CreditCard", 99.00, 14.23, 20.00))
   }
 }
-
