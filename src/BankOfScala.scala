@@ -66,6 +66,11 @@ object BankOfScala {
       bank useCreditCard(accountId, Dollars(10000 + random.nextInt(500)))
       bank payCreditCardBill(accountId, Dollars(1000 + random.nextInt(100)))
     }
+    /* Request Currency */
+    println("-" * 100)
+    println("Requesting Currency")
+    bank.requestCurrency(depositAccountIds.head, "120 USD")
+    bank.requestCurrency(depositAccountIds.tail.head, "100 CAD")
 
     /** Statistics * */
     println("-" * 100)
