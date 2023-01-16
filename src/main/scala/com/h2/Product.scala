@@ -4,18 +4,25 @@ import main.scala.com.h2.entities.Dollars
 
 import java.util.UUID
 
+sealed trait ProductCategory
+case object DepositsP extends ProductCategory
+case object LendingP extends ProductCategory
+
 abstract class Product {
   val name:String
   val id: UUID = UUID.randomUUID()
+  val category: ProductCategory
 
   override def toString: String = "product" + name
 }
 /*********** Deposit Products ********************/
 
 abstract class Deposits extends Product {
+  override val category: ProductCategory = DepositsP
   val interestRatePerYear: Double
   val minimumBalancePerMonth: Dollars
 }
+
 abstract class Checkings extends Deposits
 
 abstract class Savings extends Deposits {
@@ -41,6 +48,7 @@ class RewardsSavings (val minimumBalancePerMonth: Dollars, val interestRatePerYe
 
 /*--------------------Lending Products ---------------------*/
 abstract class Lending extends Product {
+  override val category: ProductCategory = LendingP
   val annualFee: Double
   val apr: Double
   val rewardsPercent: Double
